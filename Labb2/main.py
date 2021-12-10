@@ -1,5 +1,4 @@
 import vtk
-from vtkmodules.vtkRenderingCore import vtkColorTransferFunction
 
 reader = vtk.vtkImageReader()
 reader.SetFileName("BostonTeapot.raw")
@@ -32,7 +31,7 @@ plane.SetOrigin(79.51763853353643, 142.3562725373262, 113.45252769160768)
 plane.SetNormal(0.8645083127426199, 0.2248326171531122, -0.44952827660002725)
 
 clip = vtk.vtkClipPolyData()
-clip.SetInputConnection(contour2.GetOutputPort())
+clip.SetInputConnection(contour.GetOutputPort())
 clip.SetClipFunction(plane)
 clip.SetValue(0)
 clip.Update()
@@ -52,6 +51,7 @@ iren = vtk.vtkRenderWindowInteractor()
 
 renderer = vtk.vtkRenderer()
 renderer.AddActor(lobster)
+renderer.AddActor(contourActor)
 
 reWin.AddRenderer(renderer)
 iren.SetRenderWindow(reWin)

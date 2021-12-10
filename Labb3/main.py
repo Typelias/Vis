@@ -1,10 +1,15 @@
 from bokeh.plotting import figure, show
+import pandas as pd
 
+dataset = pd.read_csv('Swedish_Population_Statistics.csv')
 
-x = [1, 2, 3, 4, 5]
-y = [6, 7, 2, 4, 5]
+print(dataset)
 
-p = figure(title="Simple line example", x_axis_label="x", y_axis_label="y")
-p.line(x, y, legend_label="Temp.", line_width=2)
+region = dataset['region']
+y2012 = dataset['2012']
 
-show(p)
+p = figure(title="Simple line example", x_axis_label="Population", y_range=region)
+#p.line(x, y, legend_label="Temp.", line_width=2)
+p.hbar(y=region, right=y2012)
+
+#show(p)
